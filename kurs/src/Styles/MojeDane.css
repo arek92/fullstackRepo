@@ -1,0 +1,40 @@
+.moje-dane {
+  display: flex;
+  gap: 40px;
+  padding: 30px;
+}
+
+.left {
+  width: 220px;
+  text-align: center;
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.right {
+  flex: 1;
+}
+
+.field {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.label {
+  width: 150px;
+  font-weight: bold;
+}
+
+.value {
+  cursor: pointer;
+}
+
+input {
+  padding: 4px 6px;
+}

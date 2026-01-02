@@ -1,0 +1,78 @@
+.birthday-container {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: left;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calendar-card {
+    width: 200px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.calendar-header {
+    background-color: #e63946; /* Intensywny czerwony */
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.calendar-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+}
+
+.calendar-day {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #1d3557;
+    line-height: 1;
+    margin: 10px 0;
+}
+
+.calendar-year {
+    color: #457b9d;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.calendar-footer {
+    padding: 10px;
+    font-size: 0.8rem;
+    color: #888;
+    border-top: 1px dashed #ccc;
+    background-color: #fff;
+}
+
+.birthday-list {
+    margin-top: 30px;
+    text-align: top;
+    margin-left:20px;
+}
+
+/* Opcjonalny efekt "dziurek" na górze kartki */
+.calendar-card::before {
+    content: "•• ••";
+    display: block;
+    letter-spacing: 15px;
+    color: #333;
+    font-size: 12px;
+    margin-top: -5px;
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    z-index: 10;
+}
