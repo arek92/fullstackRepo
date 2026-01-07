@@ -11,6 +11,7 @@ function EmailToChangePassword(){
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 //   const navigate = useNavigate();
 
 
@@ -22,7 +23,7 @@ function EmailToChangePassword(){
 
   try {
       await axios.post(
-        "http://localhost:8099/api/password/reset-request",
+        "${API_URL}/api/password/reset-request",
         { email },
         { withCredentials: true }
       );

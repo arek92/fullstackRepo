@@ -14,6 +14,7 @@ function RegisterForm() {
   const [koordynator,setKoordynator] = useState('');
   const [dataUrodzenia, setDataUrodzenia] = useState('');
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
   
 
   const handleSubmit = async (e) => {
@@ -34,7 +35,7 @@ function RegisterForm() {
 
   try {
     const response = await axios.post(
-      "http://localhost:8099/api/auth/register",
+      "${API_URL}/api/auth/register",
       registerData,
       {
         headers: { "Content-Type": "application/json" },

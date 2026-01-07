@@ -7,6 +7,7 @@ export default function WidokMembera() {
   const [timeLeft, setTimeLeft] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleLogout = useCallback(async () => {
     try {

@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 function ResetPasswordForm() {
   const location = useLocation();
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const token = useMemo(() => {
     const params = new URLSearchParams(location.search);
@@ -33,7 +34,7 @@ function ResetPasswordForm() {
 
     try {
       await axios.post(
-        "http://localhost:8099/api/password/reset",
+        "${API_URL}/api/password/reset",
         { token, newPassword },
         { withCredentials: true }
       );

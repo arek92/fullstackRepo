@@ -3,9 +3,11 @@ import axios from "axios";
 import '../Styles/MojeDane.css';
 import { useNavigate } from "react-router-dom";
 
+
 const EditableField = ({ label, value, onSave }) => {
   const [editing, setEditing] = useState(false);
   const [val, setVal] = useState(value);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // aktualizacja gdy user się zmieni
   useEffect(() => {
@@ -60,10 +62,11 @@ const EditableField = ({ label, value, onSave }) => {
 export default function MojeDane() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // pobranie danych użytkownika
   useEffect(() => {
-    axios.get("http://localhost:8099/api/me", { withCredentials: true })
+    axios.get("${API_URL}/api/me", { withCredentials: true })
       .then(res => setUser(res.data));
   }, []);
 
@@ -72,7 +75,7 @@ export default function MojeDane() {
     const updated = { ...user, [field]: value };
     setUser(updated);
 
-    axios.put("http://localhost:8099/api/meInfo", updated, {
+    axios.put("${API_URL}/api/meInfo", updated, {
       withCredentials: true
     });
   };
@@ -83,11 +86,11 @@ export default function MojeDane() {
     form.append("file", file);
     form.append("category", "avatar");
 
-    axios.post("http://localhost:8099/api/gallery/upload", form, {
+    axios.post("${API_URL}/api/gallery/upload", form, {
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
-      .then(() => axios.get("http://localhost:8099/api/me", { withCredentials: true }))
+      .then(() => axios.get("${API_URL}/api/me", { withCredentials: true }))
       .then(res => setUser(res.data));
   };
 
@@ -113,7 +116,7 @@ export default function MojeDane() {
       {/* LEWA STRONA */}
 <div className="left avatar-wrapper">
   <img
-    src={`http://localhost:8099${user.avatarUrl}`}
+    src={`${API_URL}${user.avatarUrl}`}
     className="avatar"
     alt="avatar"
   />

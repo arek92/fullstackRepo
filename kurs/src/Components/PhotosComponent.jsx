@@ -12,11 +12,12 @@ const PhotosComponent = () => {
     const [category, setCategory] = useState("Z życia Koinonii");
     const [photos, setPhotos] = useState([]);
     const navigate = useNavigate();
+    const API_URL = import.meta.env.VITE_API_URL;
 
     // Pobieranie zdjęć dla wybranej kategorii
   const fetchPhotos = async () => {
     try {
-        const response = await axios.get(`http://localhost:8099/api/gallery/photos`, {
+        const response = await axios.get(`${API_URL}/api/gallery/photos`, {
             params: { category: category }, // To bezpieczniejszy sposób przekazywania parametrów ze spacjami
             withCredentials: true           // OBOWIĄZKOWE przy użyciu Spring Security + Session
         });
@@ -37,7 +38,7 @@ const PhotosComponent = () => {
         formData.append("file", selectedFile);
         formData.append("category", category);
 
-        await axios.post("http://localhost:8099/api/gallery/upload", formData, {
+        await axios.post("${API_URL}/api/gallery/upload", formData, {
             headers: { "Content-Type": "multipart/form-data" },
             withCredentials: true
         });
@@ -48,7 +49,7 @@ const PhotosComponent = () => {
      { const ok = window.confirm("Czy na pewno chcesz usunąć to zdjęcie?"); 
         if (!ok) { return;
 
-        } axios.delete(`http://localhost:8099/api/gallery/photos/${id}`,
+        } axios.delete(`${API_URL}/api/gallery/photos/${id}`,
              { withCredentials: true })
               .then(() => setPhotos(photos.filter(p => p.id !== id))); 
     };

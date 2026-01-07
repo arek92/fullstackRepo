@@ -5,6 +5,7 @@ import axios from "axios";
 
 
 const CalendarEvents = () => {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({ title: "", eventDate: "" });
     
@@ -60,7 +61,7 @@ const CalendarEvents = () => {
         if (!window.confirm("Czy na pewno chcesz usunąć to wydarzenie?")) return;
         
         try {
-            await axios.delete(`http://localhost:8099/api/calendar/event/${eventId}`, {
+            await axios.delete(`${API_URL}/api/calendar/event/${eventId}`, {
                 withCredentials: true
             });
             fetchEvents();

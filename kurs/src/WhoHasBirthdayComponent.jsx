@@ -4,6 +4,7 @@ import './Styles/CalendarCard.css';
 import { usersBorn as bornusers, me as loggedUser} from "./api/auth";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 
@@ -41,7 +42,7 @@ const WhoHasBirthdayComponent = () => {
         if (!text || !text.trim()) return;
 
         try {
-            await axios.post('http://localhost:8099/api/sendWishes', {
+            await axios.post('${API_URL}/api/sendWishes', {
                 recipientEmail: recipientEmail,
                 content: text
             }, { withCredentials: true });

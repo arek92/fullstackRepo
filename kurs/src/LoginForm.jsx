@@ -11,6 +11,7 @@ function LoginForm() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [wishes, setWishes] = useState([]); 
+  const API_URL = import.meta.env.VITE_API_URL;
 
 
 
@@ -19,7 +20,7 @@ function LoginForm() {
     setMessage('');
     
     try {
-      const response = await axios.post('http://localhost:8099/login', {
+      const response = await axios.post('${API_URL}/login', {
         username: email,
         password: password
         
@@ -61,7 +62,7 @@ function LoginForm() {
   const handleLogout = async () => {
     try {
       // Wyślij POST do /logout z withCredentials
-      await axios.post('http://localhost:8099/logout', {}, { withCredentials: true });
+      await axios.post('${API_URL}/logout', {}, { withCredentials: true });
       setIsLoggedIn(false);
       setMessage(''); // Wyczyść komunikat
       console.log('Wylogowano pomyślnie');
@@ -98,7 +99,7 @@ function LoginForm() {
   const showMyWishes = async () => {
     try {
         // Pamiętaj o poprawnej ścieżce do endpointu
-        const response = await axios.get('http://localhost:8099/api/myWishes', { withCredentials: true });
+        const response = await axios.get('${API_URL}/api/myWishes', { withCredentials: true });
         
         if (response.data && response.data.length > 0) {
             setWishes(response.data);
